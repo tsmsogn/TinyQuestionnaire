@@ -1,0 +1,15 @@
+{
+    "name": "tsmsogn/tiny_questionnaire",
+    "authors": [
+        {
+            "name": "tsmsogn",
+            "email": "tsmsogn@gmail.com"
+        }
+    ],
+    "config": {
+        "vendor-dir": "Vendor"
+    },
+    "require": {
+
+    }
+}
