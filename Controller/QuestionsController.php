@@ -129,7 +129,7 @@ class QuestionsController extends TinyQuestionnaireAppController {
                 $this->Session->setFlash(__('Could not move up'));
             }
         } else {
-            $this->Session->setFlash('Please provide a number of positions the category should be moved up.');
+            $this->Session->setFlash(__('Please provide a number of positions the category should be moved up.'));
         }
 
         $question = $this->Question->find('first', array('conditions' => array('Question.' . $this->Question->primaryKey => $id)));
@@ -158,7 +158,7 @@ class QuestionsController extends TinyQuestionnaireAppController {
                 $this->Session->setFlash(__('Could not move down'));
             }
         } else {
-            $this->Session->setFlash('Please provide the number of positions the field should be moved down.');
+            $this->Session->setFlash(__('Please provide the number of positions the field should be moved down.'));
         }
 
         $question = $this->Question->find('first', array('conditions' => array('Question.' . $this->Question->primaryKey => $id)));
