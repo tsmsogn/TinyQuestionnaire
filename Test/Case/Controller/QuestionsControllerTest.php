@@ -17,13 +17,24 @@ class QuestionsControllerTest extends ControllerTestCase {
 		'plugin.tiny_questionnaire.questionnaire'
 	);
 
+	public function startTest() {
+		$this->Question = ClassRegistry::init('TinyQuestionnaire.Question');
+	}
+
+	public function endTest() {
+		unset($this->Question);
+		ClassRegistry::flush();
+	}
+
 /**
  * testAdminIndex method
  *
  * @return void
  */
 	public function testAdminIndex() {
-		$this->markTestIncomplete('testAdminIndex not implemented.');
+		$result = $this->_testAction('/admin/tiny_questionnaire/questions/index');
+		$this->assertContains(2, Set::classicExtract($this->vars['questions'], '{n}.Question.id'));
+		debug($result);
 	}
 
 /**
@@ -32,34 +43,153 @@ class QuestionsControllerTest extends ControllerTestCase {
  * @return void
  */
 	public function testAdminView() {
-		$this->markTestIncomplete('testAdminView not implemented.');
+		$result = $this->_testAction('/admin/tiny_questionnaire/questions/view/1');
+		debug($result);
 	}
 
 /**
- * testAdminAdd method
+ * testAdminAddUno method
  *
  * @return void
  */
-	public function testAdminAdd() {
-		$this->markTestIncomplete('testAdminAdd not implemented.');
+	public function testAdminAddUno() {
+		$data = array(
+			'Question' => array(
+				'title' => '',
+			)
+		);
+
+		$oldCount = $this->Question->find('count');
+		$result = $this->_testAction('/admin/tiny_questionnaire/questions/add', array('data' => $data));
+		$newCount = $this->Question->find('count');
+
+		$this->assertSame($oldCount, $newCount);
+		debug($result);
 	}
 
 /**
- * testAdminEdit method
+ * testAdminAddDos method
  *
  * @return void
  */
-	public function testAdminEdit() {
-		$this->markTestIncomplete('testAdminEdit not implemented.');
+	public function testAdminAddDos() {
+		$data = array(
+			'Question' => array(
+				'value' => 'value',
+				'title' => 'title',
+				'description' => 'description',
+				'validation' => '',
+				'input_type' => 'input_type',
+				'weight' => 2,
+				'options' => 'options',
+				'attributes' => 'attributes',
+				'status' => 0,
+				'questionnaire_id' => 1,
+			)
+		);
+
+		$oldCount = $this->Question->find('count');
+		$result = $this->_testAction('/admin/tiny_questionnaire/questions/add', array('data' => $data));
+		$newCount = $this->Question->find('count');
+
+		$this->assertSame($oldCount + 1, $newCount);
+		$this->assertContains('/admin/tiny_questionnaire/questions', $this->headers['Location']);
+		debug($result);
 	}
 
 /**
- * testAdminDelete method
+ * testAdminEditUno method
  *
  * @return void
  */
-	public function testAdminDelete() {
-		$this->markTestIncomplete('testAdminDelete not implemented.');
+	public function testAdminEditUno() {
+		$this->setExpectedException('NotFoundException');
+		$result = $this->_testAction('/admin/tiny_questionnaire/questions/edit/0');
+		debug($result);
+	}
+
+/**
+ * testAdminEditDos method
+ *
+ * @return void
+ */
+	public function testAdminEditDos() {
+		$data = array(
+			'Question' => array(
+				'id' => 1,
+				'title' => '',
+			)
+		);
+
+		$oldCount = $this->Question->find('count');
+		$result = $this->_testAction('/admin/tiny_questionnaire/questions/edit/1', array('data' => $data));
+		$newCount = $this->Question->find('count');
+
+		$this->assertSame($oldCount, $newCount);
+		debug($result);
+	}
+
+/**
+ * testAdminEditTres method
+ *
+ * @return void
+ */
+	public function testAdminEditTres() {
+		$data = array(
+			'Question' => array(
+				'id' => 1,
+				'value' => 'value',
+				'title' => 'title',
+				'description' => 'description',
+				'validation' => '',
+				'input_type' => 'input_type',
+				'weight' => 2,
+				'options' => 'options',
+				'attributes' => 'attributes',
+				'status' => 0,
+				'questionnaire_id' => 1,
+			)
+		);
+
+		$oldUpdated = $this->Question->field('updated', array('id' => 1));
+		$result = $this->_testAction('/admin/tiny_questionnaire/questions/edit/1', array('data' => $data));
+		$newUpdated = $this->Question->field('updated', array('id' => 1));
+
+		$this->assertNotEquals($oldUpdated, $newUpdated);
+		$this->assertContains('/admin/tiny_questionnaire/questions', $this->headers['Location']);
+		debug($result);
+	}
+
+/**
+ * testAdminDeleteUno method
+ *
+ * @return void
+ */
+	public function testAdminDeleteUno() {
+		$this->setExpectedException('NotFoundException');
+		$result = $this->_testAction('/admin/tiny_questionnaire/questions/delete/0');
+		debug($result);
+	}
+
+/**
+ * testAdminDeleteDos method
+ *
+ * @return void
+ */
+	public function testAdminDeleteDos() {
+		$this->setExpectedException('MethodNotAllowedException');
+		$result = $this->_testAction('/admin/tiny_questionnaire/questions/delete/1', array('method' => 'GET'));
+		debug($result);
+	}
+
+/**
+ * testAdminDeleteTres method
+ *
+ * @return void
+ */
+	public function testAdminDeleteTres() {
+		$result = $this->_testAction('/admin/tiny_questionnaire/questions/delete/1');
+		debug($result);
 	}
 
 /**

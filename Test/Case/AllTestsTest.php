@@ -1,5 +1,5 @@
 <?php
-class AllTinyQuestionnaireTestsTest extends PHPUnit_Framework_TestSuite {
+class AllTestsTest extends PHPUnit_Framework_TestSuite {
 
 /**
  * suite
