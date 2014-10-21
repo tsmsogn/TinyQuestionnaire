@@ -19,5 +19,7 @@ CakePlugin::load('TinyQuestionnaire', array('bootstrap' => false, 'routes' => tr
 Enable admin routing in app/Config/core.php file:
 
 ```php
+<?php
 Configure::write('Routing.prefixes', array('admin'));
+?>
 ```
