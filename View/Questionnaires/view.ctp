@@ -73,14 +73,7 @@
                     <?php 
                         $label = $question['title'];
                         $i = $question['id'];
-                        echo
-//                            $this->Form->input("Question.$i.id", array(
-//                                'value' => $question['id'],
-//                            )) .
-//                            $this->Form->input("Question.$i.value", array(
-//                                'type' => 'hidden', 'value' => $question['value']
-//                            )) .
-                            $this->QuestionForm->input($question, $label, $i);
+                        echo $this->QuestionForm->input($question, $label, $i);
                     ?>
                 </td>
 	    		<td><?php echo $question['value']; ?></td>

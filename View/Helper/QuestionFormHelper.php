@@ -54,14 +54,9 @@ class QuestionFormHelper extends AppHelper {
 	public function input($setting, $label, $i) {
 		$output = '';
 
-		if (!empty($setting)) {
-			foreach ($setting as $key => $val) {
-				$output .= $this->Form->input("Question.$i.$key", array(
-					'type' => 'hidden',
-					'value' => $val,
-				));
-			}
-		}
+		$output .= $this->Form->input("Question.$i.id", array(
+ 			'value' => $i,
+        ));
 
 		$inputType = ($setting['input_type'] != null) ? $setting['input_type'] : 'text';
 
