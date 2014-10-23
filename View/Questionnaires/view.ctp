@@ -98,7 +98,7 @@
 	    	</tr>
 	    <?php endforeach; ?>
 	    </table>
-    <?php echo $this->Form->submit(); ?>
+    <?php echo $this->Form->end(__('Submit')); ?>
 <?php endif; ?>
 
 	<div class="actions">
