@@ -15,86 +15,84 @@ App::uses('AppHelper', 'View/Helper');
  */
 class QuestionFormHelper extends AppHelper {
 
-    public $helpers = array(
-        'Form',
-    );
+/**
+ * @var array
+ */
+	public $helpers = array(
+		'Form',
+	);
 
-    /**
-     * _inputCheckbox
-     *
-     * @see QuestionFormHelper::input()
-     */
-    protected function _inputCheckbox($setting, $label, $i) {
-        if (isset($setting['value']) && $setting['value'] == 1) {
-            $output = $this->Form->input("Question.$i.value", array(
-                'type' => $setting['input_type'],
-                'checked' => 'checked',
-                'label' => $label
-            ));
-        } else {
-            $output = $this->Form->input("Question.$i.value", array(
-                'type' => $setting['input_type'],
-                'label' => $label
-            ));
-        }
-        return $output;
-    }
+/**
+ * _inputCheckbox
+ *
+ * @see QuestionFormHelper::input()
+ */
+	protected function _inputCheckbox($setting, $label, $i) {
+		if (isset($setting['value']) && $setting['value'] == 1) {
+			$output = $this->Form->input("Question.$i.value", array(
+				'type' => $setting['input_type'],
+				'checked' => 'checked',
+				'label' => $label
+			));
+		} else {
+			$output = $this->Form->input("Question.$i.value", array(
+				'type' => $setting['input_type'],
+				'label' => $label
+			));
+		}
+		return $output;
+	}
 
-    /**
-     * Renders input setting according to its type
-     *
-     * @param array $setting setting data
-     * @param string $label Input label
-     * @param integer $i index
-     * @return string
-     */
-    public function input($setting, $label, $i) {
-        $output = '';
+/**
+ * Renders input setting according to its type
+ *
+ * @param array $setting setting data
+ * @param string $label Input label
+ * @param integer $i index
+ * @return string
+ */
+	public function input($setting, $label, $i) {
+		$output = '';
 
-        if (!empty($setting)) {
-            foreach ($setting as $key => $val) {
-                $output .= $this->Form->input("Question.$i.$key", array(
-                    'type' => 'hidden',
-                    'value' => $val,
-                ));
-            }
-        }
+		$output .= $this->Form->input("Question.$i.id", array(
+ 			'value' => $i,
+        ));
 
-        $inputType = ($setting['input_type'] != null) ? $setting['input_type'] : 'text';
+		$inputType = ($setting['input_type'] != null) ? $setting['input_type'] : 'text';
 
-        if ($setting['input_type'] == 'multiple') {
-            $multiple = true;
-            $attributes = json_decode($setting['attributes'], true);
-            if (isset($attributes['multiple'])) {
-                $multiple = $attributes['multiple'];
-            };
-            $selected = is_array($setting['value']) ? $setting['value'] : json_decode($setting['value']);
-            $options = json_decode($setting['options'], true);
-            $output .= $this->Form->input("Question.$i.value", array(
-                'label' => $label,
-                'multiple' => $multiple,
-                'options' => $options,
-                'selected' => $selected,
-            ));
-        } elseif ($setting['input_type'] == 'checkbox') {
-            $output .= $this->_inputCheckbox($setting, $label, $i);
-        } elseif ($setting['input_type'] == 'radio') {
-            $value = $setting['value'];
-            $options = json_decode($setting['options'], true);
-            $output .= $this->Form->input("Question.$i.value", array(
-                'legend' => $setting['title'],
-                'type' => 'radio',
-                'options' => $options,
-                'value' => $value,
-            ));
-        } else {
-            $output .= $this->Form->input("Question.$i.value", array(
-                'type' => $inputType,
-                'value' => $setting['value'],
-                'label' => $label,
-            ));
-        }
-        return $output;
-    }
+		if ($setting['input_type'] == 'multiple') {
+			$multiple = true;
+			$attributes = json_decode($setting['attributes'], true);
+			if (isset($attributes['multiple'])) {
+				$multiple = $attributes['multiple'];
+			};
+			$selected = is_array($setting['value']) ? $setting['value'] : json_decode($setting['value']);
+			$options = json_decode($setting['options'], true);
+			$output .= $this->Form->input("Question.$i.value", array(
+				'label' => $label,
+				'multiple' => $multiple,
+				'options' => $options,
+				'selected' => $selected,
+			));
+		} elseif ($setting['input_type'] == 'checkbox') {
+			$output .= $this->_inputCheckbox($setting, $label, $i);
+		} elseif ($setting['input_type'] == 'radio') {
+			$value = $setting['value'];
+			$options = json_decode($setting['options'], true);
+			$output .= $this->Form->input("Question.$i.value", array(
+				'legend' => $setting['title'],
+				'type' => 'radio',
+				'options' => $options,
+				'value' => $value,
+			));
+		} else {
+			$output .= $this->Form->input("Question.$i.value", array(
+				'type' => $inputType,
+				'value' => $setting['value'],
+				'label' => $label,
+			));
+		}
+		return $output;
+	}
 
 }

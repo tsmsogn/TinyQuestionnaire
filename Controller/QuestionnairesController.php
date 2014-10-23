@@ -51,6 +51,7 @@ class QuestionnairesController extends TinyQuestionnaireAppController {
 			throw new NotFoundException(__('Invalid questionnaire'));
 		}
 
+		$this->Questionnaire->hasMany['Question']['conditions'] = array('Question.status' => 1);
 		$options = array('conditions' => array('Questionnaire.' . $this->Questionnaire->primaryKey => $id));
 
 		if ($this->request->is(array('post', 'put'))) {
@@ -71,9 +72,11 @@ class QuestionnairesController extends TinyQuestionnaireAppController {
 
 				if ($this->Question->validates()) {
 
+					$uuid = String::uuid();
 					$saveData = array();
 					foreach ($data as $key => $val) {
 						$saveData[] = array(
+							'uuid' => $uuid,
 							'question_id' => $key,
 							'value' => json_encode($val),
 							'user_id' => AuthComponent::user('id'), // @todo

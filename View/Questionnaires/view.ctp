@@ -73,14 +73,7 @@
                     <?php 
                         $label = $question['title'];
                         $i = $question['id'];
-                        echo
-//                            $this->Form->input("Question.$i.id", array(
-//                                'value' => $question['id'],
-//                            )) .
-//                            $this->Form->input("Question.$i.value", array(
-//                                'type' => 'hidden', 'value' => $question['value']
-//                            )) .
-                            $this->QuestionForm->input($question, $label, $i);
+                        echo $this->QuestionForm->input($question, $label, $i);
                     ?>
                 </td>
 	    		<td><?php echo $question['value']; ?></td>
@@ -95,15 +88,10 @@
 	    		<td><?php echo $question['questionnaire_id']; ?></td>
 	    		<td><?php echo $question['updated']; ?></td>
 	    		<td><?php echo $question['created']; ?></td>
-	    		<td class="actions">
-	    			<?php echo $this->Html->link(__('View'), array('controller' => 'questions', 'action' => 'view', $question['id'])); ?>
-	    			<?php echo $this->Html->link(__('Edit'), array('controller' => 'questions', 'action' => 'edit', $question['id'])); ?>
-	    			<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'questions', 'action' => 'delete', $question['id']), array(), __('Are you sure you want to delete # %s?', $question['id'])); ?>
-	    		</td>
 	    	</tr>
 	    <?php endforeach; ?>
 	    </table>
-    <?php echo $this->Form->submit(); ?>
+    <?php echo $this->Form->end(__('Submit')); ?>
 <?php endif; ?>
 
 	<div class="actions">

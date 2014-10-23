@@ -40,12 +40,27 @@ class QuestionnairesControllerTest extends ControllerTestCase {
 	}
 
 /**
- * testView method
+ * testViewWithInvalidId method
  *
  * @return void
  */
-	public function testView() {
+	public function testViewWithInvalidId() {
+		$this->setExpectedException('NotFoundException');
+		$result = $this->_testAction('/tiny_questionnaire/questionnaires/view/0');
+		debug($result);
+	}
+
+/**
+ * testViewUno method
+ *
+ * @return void
+ */
+	public function testViewUno() {
 		$result = $this->_testAction('/tiny_questionnaire/questionnaires/view/1');
+		$expected = array(1);
+		$question = $this->vars['questionnaire'];
+		$actual = Set::extract('/Question/id', $question);
+		$this->assertEquals($expected, $actual);
 		debug($result);
 	}
 

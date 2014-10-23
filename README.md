@@ -23,3 +23,127 @@ Enable admin routing in app/Config/core.php file:
 Configure::write('Routing.prefixes', array('admin'));
 ?>
 ```
+
+### Usage
+
+#### Checkbox
+
+value:
+
+```
+0|1
+```
+
+input type:
+
+```
+checkbox
+```
+
+#### Multiple Checkbox
+
+value:
+
+```
+[2,3]
+```
+
+input type:
+
+```
+multiple
+```
+
+options: 
+
+```
+{"1":"aaa","2":"bbb","3":"ccc"}
+```
+
+attributes:
+
+```
+{"multiple":checkbox}
+```
+
+#### Radio
+
+value:
+
+```
+2
+```
+
+input type:
+
+```
+radio
+```
+
+options:
+
+```
+{"1":"aaa","2":"bbb","3":"ccc"}
+```
+
+#### Select
+
+value:
+
+```
+2
+```
+
+input type:
+
+```
+multiple
+```
+
+options: 
+
+```
+{"1":"aaa","2":"bbb","3":"ccc"}
+```
+
+attributes:
+
+```
+{"multiple":false}
+```
+
+#### Multiple Select
+
+value:
+
+```
+2
+```
+
+input type:
+
+```
+multiple
+```
+
+options: 
+
+```
+{"1":"aaa","2":"bbb","3":"ccc"}
+```
+
+#### text
+
+input type:
+
+```
+text
+```
+
+#### textarae
+
+input type:
+
+```
+textarea
+```
