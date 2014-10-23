@@ -51,6 +51,7 @@ class QuestionnairesController extends TinyQuestionnaireAppController {
 			throw new NotFoundException(__('Invalid questionnaire'));
 		}
 
+		$this->Questionnaire->hasMany['Question']['conditions'] = array('Question.status' => 1);
 		$options = array('conditions' => array('Questionnaire.' . $this->Questionnaire->primaryKey => $id));
 
 		if ($this->request->is(array('post', 'put'))) {
