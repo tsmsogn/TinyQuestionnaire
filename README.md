@@ -26,13 +26,9 @@ Configure::write('Routing.prefixes', array('admin'));
 
 ### Usage
 
+`value` field is used as default value in common.
+
 #### Checkbox
-
-value:
-
-```
-0|1
-```
 
 input type:
 
@@ -41,12 +37,6 @@ checkbox
 ```
 
 #### Multiple Checkbox
-
-value:
-
-```
-[2,3]
-```
 
 input type:
 
@@ -68,12 +58,6 @@ attributes:
 
 #### Radio
 
-value:
-
-```
-2
-```
-
 input type:
 
 ```
@@ -87,12 +71,6 @@ options:
 ```
 
 #### Select
-
-value:
-
-```
-2
-```
 
 input type:
 
@@ -113,12 +91,6 @@ attributes:
 ```
 
 #### Multiple Select
-
-value:
-
-```
-2
-```
 
 input type:
 
