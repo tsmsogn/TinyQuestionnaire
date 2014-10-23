@@ -72,9 +72,11 @@ class QuestionnairesController extends TinyQuestionnaireAppController {
 
 				if ($this->Question->validates()) {
 
+					$uuid = String::uuid();
 					$saveData = array();
 					foreach ($data as $key => $val) {
 						$saveData[] = array(
+							'uuid' => $uuid,
 							'question_id' => $key,
 							'value' => json_encode($val),
 							'user_id' => AuthComponent::user('id'), // @todo
