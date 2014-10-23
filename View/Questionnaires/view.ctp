@@ -95,11 +95,6 @@
 	    		<td><?php echo $question['questionnaire_id']; ?></td>
 	    		<td><?php echo $question['updated']; ?></td>
 	    		<td><?php echo $question['created']; ?></td>
-	    		<td class="actions">
-	    			<?php echo $this->Html->link(__('View'), array('controller' => 'questions', 'action' => 'view', $question['id'])); ?>
-	    			<?php echo $this->Html->link(__('Edit'), array('controller' => 'questions', 'action' => 'edit', $question['id'])); ?>
-	    			<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'questions', 'action' => 'delete', $question['id']), array(), __('Are you sure you want to delete # %s?', $question['id'])); ?>
-	    		</td>
 	    	</tr>
 	    <?php endforeach; ?>
 	    </table>
