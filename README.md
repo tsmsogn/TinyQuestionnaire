@@ -40,6 +40,32 @@ input type:
 checkbox
 ```
 
+#### Multiple Checkbox
+
+value:
+
+```
+[2,3]
+```
+
+input type:
+
+```
+multiple
+```
+
+options: 
+
+```
+{"1":"aaa","2":"bbb","3":"ccc"}
+```
+
+attributes:
+
+```
+{"multiple":checkbox}
+```
+
 #### Radio
 
 value:
